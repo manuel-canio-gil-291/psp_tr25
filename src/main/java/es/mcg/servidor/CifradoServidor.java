@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CifradoServidor {
     public static final int PORT = 8080;
@@ -16,8 +15,9 @@ public class CifradoServidor {
         Socket socketCliente = null;
         DataOutputStream outputStream = null;
         DataInputStream inputStream = null;
-        List<String> palabras;
+        ArrayList<String> palabras;
         String dato = "";
+        boolean fin = false;
         try {
             socketServidor = new ServerSocket(PORT);
             socketCliente = socketServidor.accept();
@@ -28,12 +28,24 @@ public class CifradoServidor {
             do
             {
                 dato = inputStream.readUTF();
+                if(dato == "fin") {
+                    fin = true;
+                }
+                else
+                {
                 palabras.add(dato);
+                }
+                outputStream.writeUTF("Recibido");
             }
-            while(dato != "fin");
-            for(String s: palabras)
+            while(!fin);
+            for(int i = 0; i < palabras.size(); i++)
             {
-                outputStream.writeUTF(s);
+                int ascii;
+                String res;
+                ascii = palabras.get(i).codePointAt(i);
+                int sum = ascii + 1;
+                res = Character.toString(sum);
+                outputStream.writeUTF(res);
             }
             inputStream.close();
             outputStream.close();
