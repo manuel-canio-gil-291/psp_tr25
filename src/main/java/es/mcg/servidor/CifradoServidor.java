@@ -1,3 +1,12 @@
+/**
+ * EJERCICIO 1: Implementar un programa CifradoCliente y CifradoServidor con la siguiente funcionalidad:
+ * a. El cliente enviará palabras al servidor, y el servidor responderá con la palabra "Recibido".
+ * b. En el momento que el cliente envíe la palabra "fin", el servidor enviará una cadena de texto 
+ * cifrando todas las palabras enviadas previamente, sumando un carácter ASCII a cada letra.
+ * Por ejemplo, si el cliente realiza estas cuatro llamadas al servidor con los textos:
+ * 1) aaa 2) bbbb 3) abcdefg 4) fin
+ * La última respuesta del servidor será: bbb cccc bcdefgh
+ */
 package es.mcg.servidor;
 
 import java.io.DataInputStream;
