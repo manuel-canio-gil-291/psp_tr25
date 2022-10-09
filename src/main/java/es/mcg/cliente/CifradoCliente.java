@@ -62,6 +62,7 @@ public class CifradoCliente {
             try
             {
                 inputStream.close();
+                outputStream.close();
                 sc.close();
             }
             catch(IOException ioException2)
