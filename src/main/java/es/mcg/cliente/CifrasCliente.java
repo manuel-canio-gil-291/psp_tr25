@@ -1,3 +1,12 @@
+/**
+ * EJERCICIO 2: Implementar un programa CifrasCliente y CifrasServidor con las siguiente funcionalidad:
+ * a. El cliente enviará números enteros positivos al servidor, y el servidor responderá con la palabra "Recibido".
+ * b. Cuando el cliente envíe el número cero, el servidor responderá con una cadena de texto informando de la 
+ * media de los números recibidos, la moda, el mayor y el menor de todos los números.
+ * Por ejemplo, si el cliente realiza estas cinco llamadas al servidor con los textos:
+ * 1) 4; 2) 3; 3) 2; 4) 2; 5) 0
+ * La última respuesta del servidor será: "Media: 3, Moda: 2, Mayor: 4, Menor: 2".
+ */
 package es.mcg.cliente;
 
 import java.io.DataInputStream;

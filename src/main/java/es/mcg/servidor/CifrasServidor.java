@@ -1,3 +1,12 @@
+/**
+ * EJERCICIO 2: Implementar un programa CifrasCliente y CifrasServidor con las siguiente funcionalidad:
+ * a. El cliente enviará números enteros positivos al servidor, y el servidor responderá con la palabra "Recibido".
+ * b. Cuando el cliente envíe el número cero, el servidor responderá con una cadena de texto informando de la 
+ * media de los números recibidos, la moda, el mayor y el menor de todos los números.
+ * Por ejemplo, si el cliente realiza estas cinco llamadas al servidor con los textos:
+ * 1) 4; 2) 3; 3) 2; 4) 2; 5) 0
+ * La última respuesta del servidor será: "Media: 3, Moda: 2, Mayor: 4, Menor: 2".
+ */
 package es.mcg.servidor;
 
 import java.io.DataInputStream;
@@ -37,9 +46,13 @@ public class CifrasServidor {
                 outputStream.writeUTF("Recibido");
                 s = inputStream.readInt();
             }
+            //Para poder calcular la media del ArrayList debemos primero calcular la suma y despues
+            // se obtiene con el tamanio del ArrayList en formato tipo double.
             suma = calcularSuma(valores);
             media = suma / valores.size();
             outputStream.writeDouble(media);
+            //Para poder calcular la moda usaremos el HasMap para recorrer los valores del ArrayList
+            // y obtener el numero que mas se repite
             HashMap<Integer, Integer> map = new HashMap<>();
             int repetido = 0, numModa = -1, repetidoCon = 0;
             for(int i : valores)
@@ -64,6 +77,7 @@ public class CifrasServidor {
             }
 
             outputStream.writeInt(numModa);
+            //Usaremos el bucle for para obtener el numero menor del ArrayList
             for(int i = 0; i < valores.size(); i++)
             {
                 if(valores.get(i) < menor)
@@ -72,6 +86,7 @@ public class CifrasServidor {
                 }
             }
             outputStream.writeInt(menor);
+            //Hacemos lo mismo para obtener el numero mayor
             for(int i = 0; i < valores.size(); i++)
             {
                 if(valores.get(i) > mayor)
@@ -127,6 +142,7 @@ public class CifrasServidor {
     public static double calcularSuma(ArrayList<Integer> valores)
     {
         double suma = 0;
+        //Con el Iterator recorremos el ArrayList y hacemos la suma
         Iterator it = valores.iterator();
         while(it.hasNext())
         {
