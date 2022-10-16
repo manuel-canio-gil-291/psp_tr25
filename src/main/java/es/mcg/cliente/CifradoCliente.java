@@ -68,15 +68,22 @@ public class CifradoCliente {
         }
         finally
         {
-            try
+            sc.close();
+            if(outputStream != null)
             {
-                inputStream.close();
-                outputStream.close();
-                sc.close();
+                try {
+                    outputStream.close();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
-            catch(IOException ioException2)
+            if(inputStream != null)
             {
-                ioException2.printStackTrace();
+                try {
+                    inputStream.close();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         }
     }

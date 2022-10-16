@@ -53,13 +53,9 @@ public class CifradoServidor {
                 String res;
                 ascii = palabras.get(i).codePointAt(i);
                 int sum = ascii + 1;
-                res = Character.toString(sum);
+                res = Character.toString((char) sum);
                 outputStream.writeUTF(res);
             }
-            inputStream.close();
-            outputStream.close();
-            socketCliente.close();
-            socketServidor.close();
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
