@@ -95,10 +95,6 @@ public class CifrasServidor {
                 }
             }
             outputStream.writeInt(mayor);
-            inputStream.close();
-            outputStream.close();
-            socketCliente.close();
-            socketServidor.close();
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }

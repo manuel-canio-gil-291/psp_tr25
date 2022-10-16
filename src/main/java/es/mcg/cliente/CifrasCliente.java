@@ -56,15 +56,22 @@ public class CifrasCliente {
         }
         finally
         {
-            try
+            sc.close();
+            if(inputStream != null)
             {
-                inputStream.close();
-                outputStream.close();
-                sc.close();
+                try {
+                    inputStream.close();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
-            catch(IOException ioException2)
+            if(outputStream != null)
             {
-                ioException2.printStackTrace();
+                try {
+                    outputStream.close();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
             }
         }
     }
